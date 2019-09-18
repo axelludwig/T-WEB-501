@@ -1,0 +1,26 @@
+{{ partial "header.html" . }}
+
+{{ partial "head.html" . }}
+
+
+
+{{ if eq .Type "events" }}
+
+
+
+{{ else if eq .Type "conseil-municipal" }}
+
+
+
+{{ else }}
+
+{{ end }}
+
+
+
+<script> function Retour() { window.location.href = "/";} </script>
+<button onclick="Retour()" class="favorite styled" type="button"> retour </button>
+
+
+
+{{ partial "footer.html" . }}

@@ -1,0 +1,8 @@
+{{ range .Data.Pages }}
+{{ if eq .Type "events" }}
+
+{{ if eq .param 0 }}
+
+
+
+<h1> {{ .param }} </h1>
