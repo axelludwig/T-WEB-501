@@ -1,13 +1,17 @@
+{{ partial "header.html" . }}
+
+{{ partial "head.html" . }}
+
+
+
+
 {{ $url := path.Base .Permalink }}
 {{ if eq $url "events"}}
 
-{{ range .Data.Pages }}
-{{ if eq .Type "events" }}
-{{ partial "partialevents" (dict "context" . "param" "0") }}
 
-<h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1>
-{{ end }}
-{{ end }}
+{{ partial "partialevents.html" (dict "context" . "param" "0") }}
+
+<!-- <h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1> -->
 
 {{ else if eq $url "conseil-municipal"}}
 
@@ -15,11 +19,14 @@
 <ul>
 {{ range .Data.Pages }}
 {{ if eq .Type "conseil-municipal" }}
-<li> {{ .Params.FirstName }} {{ upper .Params.LastName }} {{ .Params.Role }} </li>
+<li> <h3>{{ .Params.FirstName }} {{ upper .Params.LastName }} {{ .Params.Role }}</h3> </li>
 {{ end }}
 {{ end }}
 </ul>
 
-<p> <a href="/"> retour </a> </p>
 
 {{ end }}
+
+
+
+{{ partial "footer.html" . }}

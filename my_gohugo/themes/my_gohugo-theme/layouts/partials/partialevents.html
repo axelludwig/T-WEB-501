@@ -1,0 +1,9 @@
+{{ if eq .param "0" }}
+<h4> liste de tous les evenemnts </h4>
+{{ range .context.Data.Pages }}
+{{ if eq .Type "events" }}
+<h2>le {{ .Params.When }}</h2>
+<h3> {{ .Content }} </h3>
+{{ end }}
+{{ end }}
+{{ end }}
