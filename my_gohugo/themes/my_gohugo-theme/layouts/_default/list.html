@@ -1,9 +1,4 @@
-{{ partial "header.html" . }}
-
-{{ partial "head.html" . }}
-
-
-
+{{ define "main" }}
 
 {{ $url := path.Base .Permalink }}
 {{ if eq $url "events"}}
@@ -27,6 +22,4 @@
 
 {{ end }}
 
-
-
-{{ partial "footer.html" . }}
+{{ end }}

@@ -1,0 +1,39 @@
+h1
+{
+  color: gray
+}
+
+html,body{
+    height: 100%
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #343A41;
+  color: white;
+  text-align: center;
+}
+
+.footer {
+margin-top: 10px
+}
+
+.test{
+margin-top: 20px;
+margin-bottom: 20px;
+font-size: 20px;
+}
+
+.contact{
+margin-left: 20px;;
+
+}
+
+.lienform:hover{
+color: black;
+margin-top: 0px;
+cursor: pointer;
+}

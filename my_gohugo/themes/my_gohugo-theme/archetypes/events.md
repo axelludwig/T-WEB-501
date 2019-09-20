@@ -8,7 +8,7 @@ label: "Label"
 
 when: {{ now.Format "2006-01-02" }}
 description: "Description"
-photos: []
+photos: ["test.jpg"]
 
 draft: true
 important: false

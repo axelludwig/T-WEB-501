@@ -1,6 +1,4 @@
-{{ partial "header.html" . }}
-
-{{ partial "head.html" . }}
+{{ define "main" }}
 
 
 
@@ -21,6 +19,5 @@
 <script> function Retour() { window.location.href = "/";} </script>
 <button onclick="Retour()" class="favorite styled" type="button"> retour </button>
 
-
-
-{{ partial "footer.html" . }}
+<h2>test single</h2>
+{{ end }}

@@ -1,15 +1,12 @@
-{{ partial "header.html" . }}
-
-{{ partial "head.html" . }}
-
+{{ define "main" }}
 
 <h2> test affichage d'un event </h2>
 
-{{ range first 10 .Data.Pages }}
+<!-- {{ range first 10 .Data.Pages }}
 {{ if eq .Type "events" }}
 <h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1>
 {{ end }}
-{{ end }}
+{{ end }} -->
 
 
 
@@ -44,4 +41,4 @@ Site.RegularPages a la place de data.pages
 
 <!-- <h1>test</h1> -->
 
-{{ partial "footer.html" . }}
+{{ end }}
