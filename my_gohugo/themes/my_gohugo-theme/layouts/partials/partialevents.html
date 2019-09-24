@@ -1,36 +1,42 @@
 {{ if eq .param "0" }}
+
+
 <h4> Liste des évenements </h4>
+
+
+
+<div class="card-deck">
+
 {{ range .context.Data.Pages }}
 {{ if eq .Type "events" }}
 
 
-  	<div class="row">
-        <div class="col-md-8">
-          <style >
-            .titrelien:hover>.dropdown-menu{display: block;}
-          </style>
-          <h2 class="titrelien">{{ .Params.Title }}</h2>
 
-          <div class="row">
-            <div class="col-md-6">
-              <h3> le {{ .Params.When }} </h3>
-            </div>
-            <div class="col-md-6">
-              <h3> {{ .Params.Label }} </h3>
-            </div>
-          </div>
-
-      	</div>
-        <div class="col-md-4">
-          <img src="/static/pictures/test.jpg" class="rounded float-right" alt="test">
-        </div>
+  <div class="card">
+    <img class="card-img-top" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ .Params.Title }}</h5>
+      <p class="card-text">{{ .Params.Description }}</p>
     </div>
+    <div class="card-footer">
+      <script type="text/javascript">
+        function link(n) { window.location.href = n;}
+      </script>
+      <button onclick="link({{.Permalink}})" type="button" class="btn btn-primary btn-lg btn-block">Voir plus</button>
+    </div>
+  </div>
 
 
 
-<p> <a href="{{ .Permalink }}"> Voir plus </a> </p>
+
+
+
+
 {{ end }}
 {{ end }}
+
+</div>
+
 
 {{ else if eq .param "1" }}
 <h1> je susi sle numeroi 1 </h1>

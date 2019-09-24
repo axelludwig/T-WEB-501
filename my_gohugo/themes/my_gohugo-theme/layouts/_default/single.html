@@ -1,23 +1,43 @@
 {{ define "main" }}
 
-
-
 {{ if eq .Type "events" }}
 
+<h4> {{ .Params.Title }} </h4>
+<h4> {{ .Params.Add }} </h4>
+<h4> {{ .Params.PostalCode }} </h4>
+<h4> {{ .Params.Label }} </h4>
+<h4> {{ .Params.When }} </h4>
+<h4> {{ .Params.Description }} </h4>
+
+
+<h5> L'evenement est organisé par : </h5>
+
+
+
+{{ $asso := .Params.Association }}
+
+{{ range .Site.RegularPages }}
+{{ if eq .Type "associations" }}
+{{ if eq .Params.Id $asso }}
+<a href="{{ .Permalink }}"> {{ .Params.Title }}</a>
+
+{{ end }}
+{{ end }}
+{{ end }}
 
 
 {{ else if eq .Type "conseil-municipal" }}
 
+{{ else if eq .Type "associations" }}
 
+<h1> test </h1>
+
+<h4> {{ .Params.Title }} </h4>
+<h4> {{ .Params.Description }} </h4>
+
+<img src="/pictures/{{.Params.Photo}}">
 
 {{ else }}
 
 {{ end }}
-
-
-
-<script> function Retour() { window.location.href = "/";} </script>
-<button onclick="Retour()" class="favorite styled" type="button"> retour </button>
-
-<h2>test single</h2>
 {{ end }}

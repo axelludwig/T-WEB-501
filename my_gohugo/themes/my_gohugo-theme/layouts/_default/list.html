@@ -6,18 +6,65 @@
 
 {{ partial "partialevents.html" (dict "context" . "param" "0") }}
 
+
+{{ else if eq $url "associations"}}
+
+<ul>
+
+{{ range .Data.Pages }}
+{{ if eq .Type "associations" }}
+
+
+<li> <a href="{{ .Permalink }}"> {{ .Params.Title }} {{ .Params.Description }} </a> </li>
+
+{{ end }}
+{{ end }}
+</ul>
+
+
 <!-- <h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1> -->
 
 {{ else if eq $url "conseil-municipal"}}
 
-<h2> affichage des conseillers </h2>
-<ul>
+<div class="container">
+
+
+<br>
+<div class="conseil-municipal">
+<h4> Liste des conseillers municipaux </h4>
+<br>
+
+
+
+
+<div class="card-deck">
+<div class="row ">
+
 {{ range .Data.Pages }}
 {{ if eq .Type "conseil-municipal" }}
-<li> <h3>{{ .Params.FirstName }} {{ upper .Params.LastName }} {{ .Params.Role }}</h3> </li>
+
+
+ <div class="col-sm-3 mb-5 ">
+  <div class="card ">
+    <img class="card-img-top " src="/pictures/{{.Params.Photo}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ .Params.FirstName }}</h5>
+      <p class="card-text">{{ upper .Params.LastName }}</p>
+    </div>
+    <div class="card-footer">
+      <h5> {{ .Params.Role }} </h5>
+    </div>
+  </div>
+  </div>
+
 {{ end }}
 {{ end }}
-</ul>
+
+</div>
+</div>
+
+</div>
+</div>
 
 
 {{ end }}

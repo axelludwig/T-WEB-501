@@ -1,0 +1,8 @@
+.Data.Pages           --> Content actuel
+.Site.RegularPages    --> Tous les contenus
+
+.data.term valeur exacte de taxo
+
+
+
+{{ if lt date .Params.When now }}

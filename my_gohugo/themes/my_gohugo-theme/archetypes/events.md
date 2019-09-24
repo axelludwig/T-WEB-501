@@ -12,5 +12,5 @@ photos: ["test.jpg"]
 
 draft: true
 important: false
-association: ""
+association: "les maçons oui"
 ---
