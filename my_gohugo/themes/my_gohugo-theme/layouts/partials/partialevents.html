@@ -1,16 +1,62 @@
 {{ if eq .param "0" }}
 
 
-<h4> Liste des évenements </h4>
 
+<div class="container">
+
+  <h3 class="text-success mt-2 mb-2">
+    Liste des évenements
+    <small class="text-muted"></small>
+  </h3>
 
 
 <div class="card-deck">
+<div class="row">
 
-{{ range .context.Data.Pages }}
+
+{{ range .context.Site.RegularPages }}
 {{ if eq .Type "events" }}
 
 
+
+<div class="col-sm-12 mb-5">
+
+
+
+  <div class="card ">
+    <img class="card-img-top" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ .Params.Title }}</h5>
+      <p class="card-text">{{ .Params.Description }}</p>
+    </div>
+    <div class="card-footer">
+      <script type="text/javascript">
+        function link(n) { window.location.href = n;}
+      </script>
+      <button onclick="link({{.Permalink}})" type="button" class="btn btn-primary btn-lg btn-block">Voir plus</button>
+    </div>
+  </div>
+</div>
+
+{{ end }}
+{{ end }}
+
+</div>
+</div>
+</div>
+
+{{ else if eq .param "1" }}
+{{ range .context.Site.RegularPages }}
+{{ if eq .Type "events" }}
+
+<div class="row">
+<div class="card-deck">
+
+{{ if gt .Params.When (now.Format "2006-01-02") }}
+
+
+
+<div class="col-sm-12 mb-5">
 
   <div class="card">
     <img class="card-img-top" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
@@ -26,18 +72,13 @@
     </div>
   </div>
 
+</div>
+</div>
+</div>
 
-
-
-
-
-
+{{ end }}
+{{ end }}
 {{ end }}
 {{ end }}
 
 </div>
-
-
-{{ else if eq .param "1" }}
-<h1> je susi sle numeroi 1 </h1>
-{{ end }}
