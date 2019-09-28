@@ -4,6 +4,6 @@ domain: ""
 adress: ""
 description: "une association bogoss"
 photo: "No_image_available_asso.png"
-important: false
+important: true
 id: "2"
 ---
