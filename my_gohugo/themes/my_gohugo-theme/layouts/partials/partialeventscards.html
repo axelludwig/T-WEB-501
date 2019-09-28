@@ -1,0 +1,15 @@
+<div class="col-sm-12 mb-5">
+  <div class="card ">
+    <img class="card-img-top card-event" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ .Params.Title }}</h5>
+      <p class="card-text">{{ .Params.Description }}</p>
+    </div>
+    <div class="card-footer">
+      <script type="text/javascript">
+        function link(n) { window.location.href = n;}
+      </script>
+      <button onclick="link({{.Permalink}})" type="button" class="btn btn-outline-success btn-lg btn-block">Voir plus</button>
+    </div>
+  </div>
+</div>

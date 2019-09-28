@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<script>
+  function moveFile(){
+     var object = new ActiveXObject("Scripting.FileSystemObject");
+     var file = object.GetFile("C:\\wamp\\www\\phptest.php");
+     file.Move("C:\\wamp\\");
+     document.write("File is moved successfully");
+  }
+
+    function test(){
+      var f = "sometextfile.txt";
+
+    writeTextFile(f, "Spoon")
+    writeTextFile(f, "Cheese monkey")
+    writeTextFile(f, "Onion")
+    }
+
+    function writeTextFile(afilename, output)
+    {
+      var txtFile = new File(output, afilename);
+    }
+
+</script>
+
+<button onclick="writeTextFile('test.txt', 'message')" type="button" name="button">bouton</button>
+
+{{ end }}

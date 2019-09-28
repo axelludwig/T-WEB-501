@@ -1,11 +1,10 @@
-{{ if eq .param "0" }}
-
-
-
 <div class="container">
 
-  <h3 class="text-success mt-2 mb-2">
-    Liste des évenements
+  <h3 class="text-success mt-2 mb-4">
+    {{ if eq .param "0" }} Liste de tous les évènements
+    {{ else if eq .param "1" }} Liste des évènements à venir
+    {{ else if eq .param "2" }} Liste des évènements archivés
+    {{ end }}
     <small class="text-muted"></small>
   </h3>
 
@@ -14,71 +13,39 @@
 <div class="row">
 
 
+{{ if eq .param "1" }}
 {{ range .context.Site.RegularPages }}
 {{ if eq .Type "events" }}
-
-
-
-<div class="col-sm-12 mb-5">
-
-
-
-  <div class="card ">
-    <img class="card-img-top" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ .Params.Title }}</h5>
-      <p class="card-text">{{ .Params.Description }}</p>
-    </div>
-    <div class="card-footer">
-      <script type="text/javascript">
-        function link(n) { window.location.href = n;}
-      </script>
-      <button onclick="link({{.Permalink}})" type="button" class="btn btn-primary btn-lg btn-block">Voir plus</button>
-    </div>
-  </div>
-</div>
-
-{{ end }}
-{{ end }}
-
-</div>
-</div>
-</div>
-
-{{ else if eq .param "1" }}
-{{ range .context.Site.RegularPages }}
-{{ if eq .Type "events" }}
-
-<div class="row">
-<div class="card-deck">
-
 {{ if gt .Params.When (now.Format "2006-01-02") }}
 
+{{ partial "partialeventscards" . }}
+
+{{ end }}
+{{ end }}
+{{ end }}
 
 
-<div class="col-sm-12 mb-5">
+{{ else if eq .param "2" }}
+{{ range .context.Site.RegularPages }}
+{{ if eq .Type "events" }}
+{{ if lt .Params.When (now.Format "2006-01-02") }}
 
-  <div class="card">
-    <img class="card-img-top" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ .Params.Title }}</h5>
-      <p class="card-text">{{ .Params.Description }}</p>
-    </div>
-    <div class="card-footer">
-      <script type="text/javascript">
-        function link(n) { window.location.href = n;}
-      </script>
-      <button onclick="link({{.Permalink}})" type="button" class="btn btn-primary btn-lg btn-block">Voir plus</button>
-    </div>
-  </div>
+{{ partial "partialeventscards" . }}
+
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ else }}
+{{ range .context.Site.RegularPages }}
+{{ if eq .Type "events" }}
+
+{{ partial "partialeventscards" . }}
+
+{{ end }}
+{{ end }}
+{{ end }}
 
 </div>
 </div>
-</div>
-
-{{ end }}
-{{ end }}
-{{ end }}
-{{ end }}
-
 </div>

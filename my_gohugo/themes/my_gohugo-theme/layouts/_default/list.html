@@ -1,40 +1,67 @@
 {{ define "main" }}
 
 {{ $url := path.Base .Permalink }}
+
+<!-- ===================================================== -->
+<!--  EVENEMENTS -->
 {{ if eq $url "events"}}
-
-
 {{ partial "partialevents.html" (dict "context" . "param" "0") }}
 
-
+<!-- ===================================================== -->
+<!-- ASSOCIATIONS -->
 {{ else if eq $url "associations"}}
 
-<ul>
 
-{{ range .Data.Pages }}
-{{ if eq .Type "associations" }}
+<div class="container">
+
+  <div class="card-deck">
+  <div class="row ">
+
+    {{ range .Data.Pages }}
+    {{ if eq .Type "associations" }}
+
+  <div class="col-sm-6 mb-3 mt-5">
+    <div class="card">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ .Title }}</h5>
+        <p class="card-text">{{ .Params.Domain }}</p>
+        <a href=" {{.Permalink}} " class="btn btn-primary">Voir plus</a>
+      </div>
+    </div>
+      </div>
 
 
-<li> <a href="{{ .Permalink }}"> {{ .Params.Title }} {{ .Params.Description }} </a> </li>
+
 
 {{ end }}
 {{ end }}
-</ul>
+
+</div>
+</div>
+
+</div>
+
 
 
 <!-- <h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1> -->
 
+
+
+
+<!-- ===================================================== -->
+<!-- CONSEIL-MUNICIPAL -->
 {{ else if eq $url "conseil-municipal"}}
 
 <div class="container">
 
 
-<br>
-<div class="conseil-municipal">
-<h4> Liste des conseillers municipaux </h4>
-<br>
+<div class="container ">
 
 
+    <h3 class="text-justify text-success mt-2 mb-4">Liste des membres de l'hôtel de ville</h3>
 
 
 <div class="card-deck">
@@ -44,16 +71,22 @@
 {{ if eq .Type "conseil-municipal" }}
 
 
- <div class="col-sm-3 mb-5 ">
-  <div class="card ">
-    <img class="card-img-top " src="/pictures/{{.Params.Photo}}" alt="Card image cap">
+ <div class="col-sm-3 mb-5">
+  <div class="card " align="center">
+    <img class="card-img-top" src="/pictures/{{.Params.Photo}}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ .Params.FirstName }}</h5>
+      <h5 class="card-title"> {{humanize .Params.FirstName }}</h5>
       <p class="card-text">{{ upper .Params.LastName }}</p>
     </div>
+  </a>
     <div class="card-footer">
       <h5> {{ .Params.Role }} </h5>
+      <script type="text/javascript">
+        function link(n) { window.location.href = n;}
+      </script>
+      <button onclick="link({{.Permalink}})" type="button" class="btn btn-outline-success btn-lg btn-block">Voir plus</button>
     </div>
+    
   </div>
   </div>
 
@@ -61,12 +94,12 @@
 {{ end }}
 
 </div>
-</div>
 
 </div>
+</div>
+
 </div>
 
 
 {{ end }}
-
 {{ end }}

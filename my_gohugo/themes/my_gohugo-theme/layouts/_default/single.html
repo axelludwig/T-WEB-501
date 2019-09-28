@@ -21,19 +21,107 @@
 {{ if eq .Params.Id $asso }}
 <a href="{{ .Permalink }}"> {{ .Params.Title }}</a>
 
+
+
 {{ end }}
 {{ end }}
 {{ end }}
+
+
 
 
 {{ else if eq .Type "conseil-municipal" }}
 
 {{ else if eq .Type "associations" }}
 
+{{ $codeasso := .Params.Id }} 
+
+<script>
+    
+    function cacherArchives(){
+        var button = document.createElement('button');
+        button.innerHTML = 'Afficher éléments archivés';
+        button.onclick=function(){afficherArchives()};
+        button.setAttribute("id", "boutonAfficher");       
+        document.getElementById('emplacementBouton').appendChild(button);
+
+        
+        var div = document.getElementById('divArchived');
+        div.style.visibility='hidden';   
+    
+        document.getElementById("boutonCacher").remove();
+    }
+
+    function afficherArchives(){
+        var button = document.createElement('button');
+        button.innerHTML = 'Cacher les évènements archivés';
+        button.onclick=function(){cacherArchives()};
+        button.setAttribute("id", "boutonCacher");       
+        document.getElementById('emplacementBouton').appendChild(button);
+
+        
+        var div = document.getElementById('divArchived');
+        div.style.visibility='visible';
+        
+        document.getElementById("boutonAfficher").remove();
+    }
+    
+    
+</script>
+
+
+
 <h4> {{ .Params.Title }} </h4>
 <h4> {{ .Params.Description }} </h4>
 
 <img src="/pictures/{{.Params.Photo}}">
+
+<div id="emplacementBouton">
+
+<button id="boutonAfficher" onclick="afficherArchives()"> Afficher éléments archivés </button>
+
+
+</div>
+
+
+<h1>Upcoming events</h1>
+
+
+
+{{ range .Site.RegularPages }}
+{{ if eq .Type "events" }}
+{{ if eq $codeasso .Params.Association }}
+{{ if gt .Params.When now }}
+
+
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+
+
+
+
+<h1><a href="{{ .Permalink }}">{{ .Params.Title}} </a></h1>
+
+
+<div id="divArchived" style="visibility: hidden;">
+        {{ range .Site.RegularPages }}
+        {{ if eq .Type "events" }}
+        {{ if eq $codeasso .Params.Association }}
+        {{ if lt .Params.When now }} 
+        <button onclick="location.href='{{ .Permalink }}'" type="button"> {{ .Params.Title }}  </button>
+        <h2> {{ .Params.Description }} </h2>    
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+</div>
+
+
+
 
 {{ else }}
 

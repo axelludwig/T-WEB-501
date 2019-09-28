@@ -1,49 +1,53 @@
 {{ define "main" }}
 
-<br>
-<br>
-<br>
+<div class="container">
 
-<div>
-  <h2 class="contact4">
-    <span class=""></span>Contacter l'hôtel de ville
-  </h2>
+<div class="mb-3">
+  <span class=" h1 text-success">Contacter l'hôtel de ville</span>
 </div>
 
-<div class="contact3">
-
+<div class="mb-4 mt-2">
 <form action="https://formspree.io/axel.ludwig@outlook.com" method="POST" class="form-horizontal" action="/action_page.php">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Votre adresse mail : </label>
-    <div class="col-sm-10 green-border-focus">
+    <p class="text-secondary h5 control-label col-sm-5" for="email">Votre adresse mail : </p>
+    <div class="col-sm-12 green-border-focus">
       <input type="email" name="_replyto" class="form-control" id="email" placeholder="Entrez une email valide">
     </div>
   </div>
+</div>
 
 
+<div class="mb-4 mt-2">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">L'objet de votre demande :</label>
-    <div class="col-sm-10 green-border-focus">
-      <input type="password" name="object" id="object" class="form-control" id="pwd" placeholder="Objet">
+    <p class="text-secondary h5 control-label col-sm-5">L'objet de votre demande :</p>
+    <div class="col-sm-12 green-border-focus">
+      <input name="object" id="object" class="form-control" placeholder="Objet">
     </div>
   </div>
+</div>
 
-  <div class="col-sm-offset-2 col-sm-10">
-    <div class="form-group green-border-focus">
-      <label for="exampleFormControlTextarea5">Votre message</label>
+<div class="mb-4 mt-2">
+    <div class="form-group">
+
+      <p class="text-secondary h5 control-label col-sm-5"> Votre message </p>
+      <div class="col-sm-12 green-border-focus">
       <textarea name="message" class="form-control" id="exampleFormControlTextarea5" rows="5"></textarea>
     </div>
+    </div>
   </div>
 
 
-
+<div class="mb-4 mt-2">
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-12 ">
      <button type="submit" value="Send" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
     </div>
   </div>
-</form>
+</div>
 
 </div>
+
+
+
 
 {{ end }}
