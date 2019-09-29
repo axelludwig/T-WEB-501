@@ -32,6 +32,14 @@
 
 {{ else if eq .Type "conseil-municipal" }}
 
+<script>
+window.onload = function() {
+window.location.href = "/404.html";
+}
+</script>
+
+
+
 {{ else if eq .Type "associations" }}
 
 {{ $codeasso := .Params.Id }} 

@@ -12,8 +12,11 @@
 
 
 
-        document.getElementById("boutonCacher").remove();
+        
 
 
-document.getElementById("boutonAfficher").remove();
+
+
+
+
 

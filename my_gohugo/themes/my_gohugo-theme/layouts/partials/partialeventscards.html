@@ -2,7 +2,10 @@
   <div class="card ">
     <img class="card-img-top card-event" src="/pictures/{{ index (.Params.Photos) 0 }}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ .Params.Title }}</h5>
+        <div class="row mx-md-n5">
+            <div class="col py-3 px-md-5 bordered col-example"><h5 class="card-title">{{ .Params.Title }}</h5></div>
+            <div class="col py-3 px-md-7 bordered col-example"><h6> le {{ .Params.When }} </h6></div>
+          </div>
       <p class="card-text">{{ .Params.Description }}</p>
     </div>
     <div class="card-footer">
