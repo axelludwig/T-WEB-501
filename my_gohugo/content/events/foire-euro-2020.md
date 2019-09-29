@@ -11,7 +11,7 @@ description: "venez nombreux à l'anniversaire de squeezie"
 photos: ["foire-euro.jpg"]
 
 draft: true
-important: false
+important: true
 association: "2"
 ---
 la 2e foire euro

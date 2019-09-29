@@ -11,6 +11,6 @@ description: "wtf c'est quoi cet event ???"
 photos: ["No_image_available_asso.png"]
 
 draft: true
-important: false
+important: true
 association: "1"
 ---

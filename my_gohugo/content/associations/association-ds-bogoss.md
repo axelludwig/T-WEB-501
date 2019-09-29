@@ -1,6 +1,6 @@
 ---
 title: "association ds bogoss"
-domain: ""
+domain: "sport"
 adress: ""
 description: "une association bogoss"
 photo: "No_image_available_asso.png"

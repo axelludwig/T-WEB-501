@@ -1,20 +1,19 @@
 {{ define "main" }}
 
-
 <div class="container ">
 
 
-    <h3 class="text-center text-success mt-3 mb-4">Liste des membres de l'hôtel de ville</h3>
+  <h3 class="text-center text-success mt-3 mb-4">Calendrier des évènements</h3>
 
 
-<script>
+  <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid' ],
-      defaultDate: {{ now }},
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: ['interaction', 'dayGrid'],
+        defaultDate: {{ now }},
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
@@ -22,40 +21,33 @@
       {{ range .Site.RegularPages }}
       {{ if eq .Type "events" }}
 
-        {
-          title: '{{ .Params.Title }}',
-          start: '{{ .Params.When }}',
-          url: "{{ .Permalink }}"
-        },
+      {
+        title: '{{ .Params.Title }}',
+        start: '{{ .Params.When }}',
+        url: "{{ .Permalink }}"
+      },
 
-        {{ end }}
-        {{ end }}
+      {{ end }}
+      {{ end }}
 
-        {
-          title: 'debug',
-          url: 'debug',
-          start: '2000-01-01'
-        }
-      ]
+      {
+        title: 'debug',
+        url: 'debug',
+        start: '2000-01-01'
+      }
+    ]
     });
 
     calendar.render();
   });
 
-</script>
-<style>
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-</style>
-
-
-
-
-
+  </script>
+  <style>
+    #calendar {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  </style>
 
 
 

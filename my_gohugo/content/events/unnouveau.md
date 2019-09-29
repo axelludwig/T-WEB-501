@@ -10,7 +10,7 @@ when: 2019-09-20
 description: "Description"
 photos: ["fete-musique.jpg"]
 
-draft: true
-important: false
+draft: false
+important: true
 association: "1"
 ---

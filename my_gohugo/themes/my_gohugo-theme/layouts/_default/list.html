@@ -11,8 +11,9 @@
 <!-- ASSOCIATIONS -->
 {{ else if eq $url "associations"}}
 
-
 <div class="container">
+
+    <h3 class="text-center text-success mt-3 mb-1">Liste de toutes les associations</h3>
 
   <div class="card-deck">
   <div class="row ">
@@ -20,35 +21,25 @@
     {{ range .Data.Pages }}
     {{ if eq .Type "associations" }}
 
-  <div class="col-sm-6 mb-3 mt-5">
+  <div class="col-sm-6 mb-3 mt-4">
     <div class="card">
       <div class="card-header">
-        Featured
+          {{ .Title }}
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{ .Title }}</h5>
-        <p class="card-text">{{ .Params.Domain }}</p>
+        <h5 class="card-title">Domaine : {{ .Params.Domain }}</h5>
         <a href=" {{.Permalink}} " class="btn btn-primary">Voir plus</a>
       </div>
     </div>
       </div>
 
-
-
-
-{{ end }}
+{{ end }} 
 {{ end }}
 
 </div>
 </div>
 
 </div>
-
-
-
-<!-- <h1> <a href ="{{ .Permalink }}"> le nom de l'event est : {{ .Title }}  </a> </h1> -->
-
-
 
 
 <!-- ===================================================== -->
@@ -59,17 +50,13 @@
 
 
 <div class="container ">
-
-
-    <h3 class="text-justify text-success mt-2 mb-4">Liste des membres de l'hôtel de ville</h3>
-
-
+    <h3 class="text-center text-success mt-3 mb-4">Liste de toutes les conseillers-municipaux</h3>
 <div class="card-deck">
+
 <div class="row ">
 
 {{ range .Data.Pages }}
 {{ if eq .Type "conseil-municipal" }}
-
 
  <div class="col-sm-3 mb-5">
   <div class="card " align="center">
@@ -95,7 +82,6 @@
 
 </div>
 
-</div>
 </div>
 
 </div>

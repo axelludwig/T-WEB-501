@@ -13,14 +13,12 @@
 <h5> L'evenement est organisé par : </h5>
 
 
-
 {{ $asso := .Params.Association }}
 
 {{ range .Site.RegularPages }}
 {{ if eq .Type "associations" }}
 {{ if eq .Params.Id $asso }}
 <a href="{{ .Permalink }}"> {{ .Params.Title }}</a>
-
 
 
 {{ end }}

@@ -1,5 +1,5 @@
 <div id="mySidebar" class="sidebar">
-    
+
     <p style="padding: 10px 8px 0px 30px;
             text-decoration: none;
             font-size: 25px;
@@ -8,8 +8,9 @@
             transition: 0.3s;"> Recherche </p>
 
     <div id="search">
-            <input id="searchinput" class="recherche" type="text" placeholder="Search" v-model="txt" onkeyup="recherche()" maxlength="50">
-          
+        <input id="searchinput" class="recherche" type="text" placeholder="Search" v-model="txt" onkeyup="recherche()"
+            maxlength="50">
+
         <div id="searchresults">
 
 
@@ -35,79 +36,99 @@
 
 
 <script>
-        function recherche() {
-            request = document.getElementById("searchinput").value;
-            searchdiv = document.getElementById("searchresults");
-    
-            //Création div tri
-            events = "<div> <p class=\"sidebar-spot\"> Events </p> </div>";
-            associations = "<div> <p class=\"sidebar-spot\"> Associations </p> </div>";
-    
-    
-            //boucle principale de tous les types
-    
-            {{ range .Site.RegularPages }}
-            {{ if eq .Type "events" }}
-    
-            title = {{ .Params.Title }}
-            add = {{ .Params.Add }}
-            postalCode = {{ .Params.PostalCode }}
-            city = {{ .Params.City }}
-            label = {{ .Params.Label }}
-            when = {{ .Params.When }}
-            description = {{ .Params.Description }}
-    
-            contents = [title, add, postalCode, city, label, when, description];
 
-            i = 0;
-            trouve = false;
-            length = contents.length;
-            while ((!trouve) && (i < length)){
-                contents[i] = contents[i];
-                if ((contents[i] != "") && (contents[i].length >= request.length) && (contents[i].includes(request))){
+    function normalizestring(value) {
+        value = value.toString();
+        if (value != "") {
+            value = value.replace(/é|è|ê/gi, "e");
+            value = value.replace(/a|â|à/gi, "a");
+            value = value.replace(/ù|û/gi, "u");
+            value = value.replace(/ö|ô/gi, "o");
+            value = value.replace(/ï|î/gi, "i");
+            value = value.replace(/æ/gi,"ae");
+            value = value.replace(/ç/gi,"c");
+            value = value.replace(/-|_/gi, " ");
+            value = value.replace(/(|)|{|}|.|,|;|:|'|"/gi, "");
+            value = value.toLowerCase();
+            return value;
+        }
+        else {
+            return "";
+        }
+    };
+
+
+    function recherche() {
+        request = normalizestring(document.getElementById("searchinput").value);
+        searchdiv = document.getElementById("searchresults");
+
+        //Création div tri
+        events = "<div> <p class=\"sidebar-spot\"> Events </p> </div>";
+        associations = "<div> <p class=\"sidebar-spot\"> Associations </p> </div>";
+
+
+        //boucle principale de tous les types
+
+        {{ range.Site.RegularPages }}
+        {{ if eq .Type "events" }}
+
+        title = {{ .Params.Title }}
+        add = {{ .Params.Add }}
+        postalCode = {{ .Params.PostalCode }}
+        city = {{ .Params.City }}
+        label = {{ .Params.Label }}
+        when = {{ .Params.When }}
+        description = {{ .Params.Description }}
+
+        contents = [title, add, postalCode, city, label, when, description];
+
+        for (var i = 0; i < contents.length; i++) contents[i] = normalizestring(contents[i])
+
+        i = 0;
+        trouve = false;
+        length = contents.length;
+        while ((!trouve) && (i < length)) {
+            if ((contents[i] != "") && (contents[i].length >= request.length) && (contents[i].includes(request))) {
                 events += '<div><a class="searchresult" href="{{ .Permalink }} "> {{ .Params.Title }} </a></div>';
                 trouve = true;
-                }
-
-                i++;
             }
-    
-    
-            {{ else if eq .Type "associations" }}
-    
-            title = {{ .Params.Title }}
-            adress = {{ .Params.adress }}
-            domain = {{ .Params.domain }}
-            id = {{ .Params.Id }}
-            description = {{ .Params.Description }}
-    
-            contents = [title, adress, domain, id, description];
-
-            i = 0;
-            trouve = false;
-            length = contents.length;
-            while ((!trouve) && (i < length)){
-                contents[i] = contents[i];
-                if ((contents[i] != "") && (contents[i].length >= request.length) && (contents[i].includes(request))){
-                associations += '<div><a class="searchresult" href="{{ .Permalink }} "> {{ .Params.Title }} </a></div>';
-                trouve = true;
-                }
-
-                i++;
-            }
-    
-    
-            {{ end }}
-            {{ end }}
+            i++;
+    }
 
 
-            if (request == "") result = "";
-            else result = events.concat(associations);
-            
-            searchdiv.innerHTML = result;
+    {{ else if eq .Type "associations" }}
+
+    title = {{ .Params.Title }}
+    adress = {{ .Params.adress }}
+    domain = {{ .Params.domain }}
+    id = {{ .Params.Id }}
+    description = {{ .Params.Description }}
+
+    contents = [title, adress, domain, id, description];
+
+    i = 0;
+    trouve = false;
+    length = contents.length;
+    while ((!trouve) && (i < length)) {
+        if ((contents[i] != "") && (contents[i].length >= request.length) && (contents[i].includes(request))) {
+            associations += '<div><a class="searchresult" href="{{ .Permalink }} "> {{ .Params.Title }} </a></div>';
+            trouve = true;
+        }
+        i++;
+    }
+
+
+    {{ end }}
+    {{ end }}
+
+
+    if (request == "") result = "";
+    else result = events.concat(associations);
+
+    searchdiv.innerHTML = result;
     
-            }
-    </script>
+    }
+</script>
 
 
 
@@ -163,7 +184,7 @@
         /* 0.5 second transition effect to slide in the sidebar */
     }
 
-    .recherche{
+    .recherche {
         margin-left: 1px;
         text-decoration: none;
         color: #818181;
